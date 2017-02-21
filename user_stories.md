@@ -27,3 +27,22 @@
 
 ## Four
 >As a developer, I want to store the results of the images clicked, so that there is a way for the research team to extract results.
+
+>Darius part 
+
+#Marketing Team
+
+## One
+>as a marketing teammember we like to see a fluid, interactive, easy to use interface.
+we need the products to be highlighted as three images so that our focus groups know what they're in for.
+
+## Two 
+>as a marketing teammember we need the data to be compiled and effienciently stored so that it can be accessed in a seamless manner.
+
+## Three 
+
+>the purpose of this app is to collected data from the focus group that can be used to effectively service our target audience.
+
+## Four
+
+>please make the app appealing so that our brand is not harm in any way during this project.
