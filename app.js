@@ -42,11 +42,13 @@ var object_arr = [item_one, item_two, item_three, item_four, item_five,
 
 var picture_arr = [image_one, image_two, image_three];
 
+//makes a random object file path appear and returns the string
 function getRandomPic(min, max) {
   var num = Math.floor(Math.random() * (max - min) + min);
   return object_arr[num].filepath;
 }
 
+//function that starts the game and to produce new pictures
 function render () {
   var random_one = getRandomPic(0, 20);
   while (blank_arr.includes(random_one) === true){
@@ -66,10 +68,15 @@ function render () {
   }
   image_three.src = random_three;
   blank_arr.push(random_three);
-
+  for (var i = 0; i < object_arr.length; i++) {
+    if (object_arr[i].filepath === random_one || object_arr[i].filepath === random_two || object_arr[i] === random_three) {
+      object_arr[i].timesShown += 1;
+    }
+  }
 }
 render();
 
+//Makes the event listener for the items and how to handle the clicks
 for (var i = 0; i < picture_arr.length; i++) {
   picture_arr[i].addEventListener('click', picturehandler);
 }
