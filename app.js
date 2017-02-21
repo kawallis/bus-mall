@@ -5,6 +5,7 @@ var image_two = document.getElementById('image_two');
 var image_three = document.getElementById('image_three');
 var blank_arr = [];
 var global_clicked = 0;
+var global_timesShown = 0;
 
 function Picture (name, filepath, id_num) {
   this.name = name;
@@ -69,8 +70,9 @@ function render () {
   image_three.src = random_three;
   blank_arr.push(random_three);
   for (var i = 0; i < object_arr.length; i++) {
-    if (object_arr[i].filepath === random_one || object_arr[i].filepath === random_two || object_arr[i] === random_three) {
+    if (object_arr[i].filepath === random_one || object_arr[i].filepath === random_two || object_arr[i].filepath === random_three) {
       object_arr[i].timesShown += 1;
+      global_timesShown ++;
     }
   }
 }
@@ -82,7 +84,7 @@ for (var i = 0; i < picture_arr.length; i++) {
 }
 
 function picturehandler (event) {
-  if (global_clicked < 25) {
+  if (global_clicked < 24) {
     var word = event.target.getAttribute('src');
     for (var i = 0; i < object_arr.length; i++) {
       if (object_arr[i].filepath === word) {
