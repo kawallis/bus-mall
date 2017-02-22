@@ -30,6 +30,18 @@ h1 {
 img {
     border: 7px solid #4ABDAC;
     border-radius: 5%;
-    height: 200px; 
+    height: auto; 
+    
+}
+
+#chart-container {
+    top:60px; 
+    left:10px; 
+    width:500px; 
+    height:500px;
+    background-color: white;
+}
+#myChart {
     width: 200px;
+    height: 200px;
 }
