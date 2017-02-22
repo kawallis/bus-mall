@@ -14,6 +14,7 @@ function Picture (name, filepath) {
   this.timesShown = 0;
 }
 
+// i know i know...
 var item_one = new Picture ('r2d2_bag','img/bag.jpg');
 var item_two = new Picture ('banana', 'img/banana.jpg');
 var item_three = new Picture ('bathroom', 'img/bathroom.jpg');
