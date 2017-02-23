@@ -7,39 +7,48 @@ var blank_arr = [];
 var global_clicked = 0;
 
 
-function Picture (name, filepath) {
-  this.name = name;
-  this.filepath = filepath;
-  this.timesClicked = 0;
-  this.timesShown = 0;
+
+
+if (localStorage.length === 0) {
+  function Picture (name, filepath) {
+    this.name = name;
+    this.filepath = filepath;
+    this.timesClicked = 0;
+    this.timesShown = 0;
+  }
+
+  var item_one = new Picture ('r2d2_bag','img/bag.jpg');
+  var item_two = new Picture ('banana', 'img/banana.jpg');
+  var item_three = new Picture ('bathroom', 'img/bathroom.jpg');
+  var item_four = new Picture ('boots', 'img/boots.jpg');
+  var item_five = new Picture ('breakfest', 'img/breakfast.jpg');
+  var item_six = new Picture ('bubblegum', 'img/bubblegum.jpg');
+  var item_seven = new Picture ('chair', 'img/chair.jpg');
+  var item_eight = new Picture ('cthulhu', 'img/cthulhu.jpg');
+  var item_nine = new Picture ('dog-duck', 'img/dog-duck.jpg');
+  var item_ten = new Picture ('dragon', 'img/dragon.jpg');
+  var item_eleven = new Picture ('pen', 'img/pen.jpg');
+  var item_twelve = new Picture ('pet-sweep', 'img/pet-sweep.jpg');
+  var item_thirteen = new Picture ('scissors', 'img/scissors.jpg');
+  var item_fourteen = new Picture ('shark', 'img/shark.jpg');
+  var item_fifteen = new Picture ('sweep', 'img/sweep.png');
+  var item_sixteen = new Picture ('tauntaun', 'img/tauntaun.jpg');
+  var item_seventeen = new Picture ('unicorn', 'img/unicorn.jpg');
+  var item_eighteen = new Picture ('usb', 'img/usb.jpg');
+  var item_nineteen = new Picture ('water-can', 'img/water-can.jpg');
+  var item_twenty = new Picture ('wine-glass', 'img/wine-glass.jpg');
+
+  var object_arr = [item_one, item_two, item_three, item_four, item_five,
+    item_six, item_seven, item_eight, item_nine, item_ten, item_eleven,
+    item_twelve, item_thirteen, item_fourteen, item_fifteen, item_sixteen,
+    item_seventeen, item_eighteen, item_nineteen, item_twenty];
+} else {
+  var stored_objects = localStorage.getItem('stored_objects');
+  stored_objects = JSON.parse(stored_objects);
+  object_arr = stored_objects;
 }
 
-// i know i know...
-var item_one = new Picture ('r2d2_bag','img/bag.jpg');
-var item_two = new Picture ('banana', 'img/banana.jpg');
-var item_three = new Picture ('bathroom', 'img/bathroom.jpg');
-var item_four = new Picture ('boots', 'img/boots.jpg');
-var item_five = new Picture ('breakfest', 'img/breakfast.jpg');
-var item_six = new Picture ('bubblegum', 'img/bubblegum.jpg');
-var item_seven = new Picture ('chair', 'img/chair.jpg');
-var item_eight = new Picture ('cthulhu', 'img/cthulhu.jpg');
-var item_nine = new Picture ('dog-duck', 'img/dog-duck.jpg');
-var item_ten = new Picture ('dragon', 'img/dragon.jpg');
-var item_eleven = new Picture ('pen', 'img/pen.jpg');
-var item_twelve = new Picture ('pet-sweep', 'img/pet-sweep.jpg');
-var item_thirteen = new Picture ('scissors', 'img/scissors.jpg');
-var item_fourteen = new Picture ('shark', 'img/shark.jpg');
-var item_fifteen = new Picture ('sweep', 'img/sweep.png');
-var item_sixteen = new Picture ('tauntaun', 'img/tauntaun.jpg');
-var item_seventeen = new Picture ('unicorn', 'img/unicorn.jpg');
-var item_eighteen = new Picture ('usb', 'img/usb.jpg');
-var item_nineteen = new Picture ('water-can', 'img/water-can.jpg');
-var item_twenty = new Picture ('wine-glass', 'img/wine-glass.jpg');
 
-var object_arr = [item_one, item_two, item_three, item_four, item_five,
-  item_six, item_seven, item_eight, item_nine, item_ten, item_eleven,
-  item_twelve, item_thirteen, item_fourteen, item_fifteen, item_sixteen,
-  item_seventeen, item_eighteen, item_nineteen, item_twenty];
 
 
 var picture_arr = [image_one, image_two, image_three];
@@ -109,7 +118,11 @@ function picturehandler (event) {
     var chart = document.createElement('canvas');
     chart.setAttribute('id', 'myChart');
     container.appendChild(chart);
-
+    for (var j = 0; j < object_arr.length; j++) {
+      var percentage = (object_arr[j].timesClicked / object_arr[j].timesShown) * 100;
+      object_arr[j].percent = Math.floor(percentage);
+    }
+    store();
     renderChart();
   }
 }
@@ -161,4 +174,11 @@ function renderChart() {
       }
     }
   });
-};
+}
+
+//local storage functions
+
+function store () {
+  var stored_objects = JSON.stringify(object_arr);
+  localStorage.setItem('stored_objects', stored_objects);
+}
